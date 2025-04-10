@@ -76,8 +76,8 @@ export const checkout = TryCatch(async (req, res) => {
           quantity: 1,
         },
       ],
-      success_url: `http://localhost:5173/paymentsuccess/${course._id}`, // ✅ Redirect after payment
-      cancel_url: `http://localhost:5173/course/${course._id}`, // 👈 Back to course if cancelled
+      success_url: `https://elearn-phi.vercel.app/paymentsuccess/${course._id}`, // ✅ Redirect after payment
+      cancel_url: `https://elearn-phi.vercel.app/course/${course._id}`, // 👈 Back to course if cancelled
       metadata: {
         userId: user._id.toString(),
         courseId: course._id.toString(),
