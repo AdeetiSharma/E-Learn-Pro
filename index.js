@@ -27,10 +27,22 @@ app.get('/', (req, res)=> {
 
 app.use(
   cors({
-    origin: "https://elearn-phi.vercel.app/", 
-    credentials: true, 
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        "https://elearn-phi.vercel.app",     // ✅ no slash
+        "https://elearn-phi.vercel.app/",    // ✅ with slash
+        "http://localhost:5173"              // ✅ dev
+      ];
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
   })
 );
+
 
 
 app.use("/uploads", express.static("uploads"));
